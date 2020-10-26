@@ -19,7 +19,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
+						<a href="index.php" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -28,10 +28,10 @@
 				<!-- Menu -->
 					<nav id="menu">
 						<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="landing.html">Landing</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="index.php">Home</a></li>
+							<li><a href="landing.php">Landing</a></li>
+							<li><a href="generic.php">Generic</a></li>
+							<li><a href="elements.php">Elements</a></li>
 						</ul>
 						<ul class="actions stacked">
 							<li><a href="#" class="button primary fit">Get Started</a></li>
