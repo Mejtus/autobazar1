@@ -15,25 +15,17 @@
 
     <!-- Header -->
     <header id="header" class="alt">
-        <a href="index.php" class="logo"><strong>Autobazár</strong> <span></span></a>
-        <nav>
-            <a href="#menu">Menu</a>
-        </nav>
+        <?php include_once("header.php")?>
     </header>
 
     <!-- Menu -->
-    <nav id="menu">
-        <ul class="links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="landing.php">Landing</a></li>
-            <li><a href="generic.php">Generic</a></li>
-            <li><a href="elements.php">Elements</a></li>
-        </ul>
-        <ul class="actions stacked">
-            <li><a href="#" class="button primary fit">Get Started</a></li>
-            <li><a href="#" class="button fit">Log In</a></li>
-        </ul>
-    </nav>
+    <?php include_once("menu.php")?>
+
+    <!-- DB -->
+    <?php
+    $mysqli = new mysqli('localhost', 'root', '', 'autobazar') or die(mysqli_error($mysqli));
+    $result = $mysqli->query("SELECT * FROM vozidla ORDER BY id DESC") or die($mysqli->error);
+    ?>
 
     <!-- Banner -->
     <section id="banner" class="major">
@@ -54,75 +46,23 @@
     <!-- Main -->
     <div id="main">
 
-        <!-- One -->
+        <!-- Vozidla -->
         <section id="one" class="tiles">
-            <article>
-									<span class="image">
-										<img src="images/volkswagen01.jpg" alt="" />
-									</span>
-                <header class="major">
-                    <h3><a href="landing.php" class="link">Volkswagen</a></h3>
-                    <p>Das Auto</p>
-                </header>
-            </article>
-            <article>
-									<span class="image">
-										<img src="images/skoda01.jpg" alt="" />
-									</span>
-                <header class="major">
-                    <h3><a href="landing.php" class="link">Škoda</a></h3>
-                    <p>Simply clever</p>
-                </header>
-            </article>
-            <article>
-									<span class="image">
-										<img src="images/peugeot01.jpg" alt="" />
-									</span>
-                <header class="major">
-                    <h3><a href="landing.php" class="link">Peugeot</a></h3>
-                    <p>MOTION & e-MOTION</p>
-                </header>
-            </article>
-            <article>
-									<span class="image">
-										<img src="images/opel01.jpg" alt="" />
-									</span>
-                <header class="major">
-                    <h3><a href="landing.php" class="link">Opel</a></h3>
-                    <p>Budúcnosť patrí všetkým</p>
-                </header>
-            </article>
-            <article>
-									<span class="image">
-										<img src="images/renault.jpg" alt="" />
-									</span>
-                <header class="major">
-                    <h3><a href="landing.php" class="link">Renault</a></h3>
-                    <p>Passion for life</p>
-                </header>
-            </article>
-            <article>
-									<span class="image">
-										<img src="images/dacia01.jpg" alt="" />
-									</span>
-                <header class="major">
-                    <h3><a href="landing.php" class="link">Dacia</a></h3>
-                    <p>Veľmi prijateľná</p>
-                </header>
-            </article>
-        </section>
-
-        <!-- Two -->
-        <section id="two">
-            <div class="inner">
-                <header class="major">
-                    <h2>Massa libero</h2>
-                </header>
-                <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-                <ul class="actions">
-                    <li><a href="landing.php" class="button next">Get Started</a></li>
-                </ul>
-            </div>
+            <?php
+            while ($tile = $result->fetch_assoc()):
+                ?>
+                <article>
+                    <span class="image">
+                        <img src="images/<?php echo $tile['img_path']; ?>" alt="" />
+                    </span>
+                    <header class="major">
+                        <h3><a class="link"><?php echo $tile['nazov']; ?></a></h3>
+                        <p><?php echo $tile['popis']; ?></p>
+                        <p><?php echo $tile['najazd']; ?> km</p>
+                        <h2><?php echo $tile['cena']; ?> €</h2>
+                    </header>
+                </article>
+            <?php endwhile; ?>
         </section>
 
     </div>
@@ -148,7 +88,7 @@
                     </div>
                     <ul class="actions">
                         <li><input type="submit" value="Send Message" class="primary" /></li>
-                        <li><input type="reset" value="Clear" /></li>
+                        <li><input type="reset" value="Vy" /></li>
                     </ul>
                 </form>
             </section>
